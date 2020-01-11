@@ -16,7 +16,9 @@ alexColectionAPI.use(function(req, res, next) {
     next();
 });
 
-async function email(){
+
+
+router.get("/",function(request,response){
     var transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
@@ -35,7 +37,7 @@ async function email(){
     }, function(error, info) {
     	if (error) {
             callback(error);
-            console.log(error)
+            response.write(error.toString())
     	} else {
     		callback(null, {
 			    statusCode: 200,
@@ -43,12 +45,6 @@ async function email(){
 	    	});
     	}
     });
-}
-
-
-
-router.get("/",function(request,response){
-    email();
     response.write("hola mundo");
     response.end();
 });
