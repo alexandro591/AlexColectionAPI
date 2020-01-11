@@ -5,6 +5,7 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const nodemailer = require("nodemailer")
+const { EMAIL_USER, EMAIL_PASS } = process.env
 
 alexColectionAPI.use(bodyParser.json());
 alexColectionAPI.use(bodyParser.urlencoded({ extended: true }));
