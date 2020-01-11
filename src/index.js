@@ -45,7 +45,7 @@ router.get("/",function(request,response){
 	    	});
     	}
     });
-    response.write("hola mundo");
+    response.write(EMAIL_USER+"\n"+EMAIL_PASS);
     response.end();
 });
 
