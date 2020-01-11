@@ -15,25 +15,26 @@ alexColectionAPI.use(function(req, res, next) {
     next();
 });
 
-var transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // true for 465, false for other ports
-    auth: {
-      user: 'notifymelocalhost@gmail.com', // generated ethereal user
-      pass: 'elhuevo591' // generated ethereal password
-    }
-  });
+async function email(){
+    var transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+          user: EMAIL_USER, // generated ethereal user
+          pass: EMAIL_PASS // generated ethereal password
+        }
+    });
 
-router.get("/",function(request,response){
     transporter.sendMail({
-        from: 'notifymelocalhost@gmail.com',
+        from: EMAIL_USER,
         to: 'alexandrotapiaflores@gmail.com',
         subject: 'notifymelocalhost@gmail.com',
         text: 'hola mundo'
     }, function(error, info) {
     	if (error) {
-    		callback(error);
+            callback(error);
+            console.log(error)
     	} else {
     		callback(null, {
 			    statusCode: 200,
@@ -41,6 +42,12 @@ router.get("/",function(request,response){
 	    	});
     	}
     });
+}
+
+
+
+router.get("/",function(request,response){
+    email();
     response.write("hola mundo");
     response.end();
 });
