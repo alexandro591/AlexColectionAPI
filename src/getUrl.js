@@ -18,7 +18,7 @@ alexColectionAPI.use(function(req, res, next) {
 
 
 
-router.get("/getUrl/*",function(request,response){
+router.get("/*",function(request,response){
     url= request.originalUrl.toString();
     for(var i=url.length;i>0;i--){
         aux=url.substring(i,url.length);
@@ -42,7 +42,7 @@ router.get("/getUrl/*",function(request,response){
 });
 
 
-alexColectionAPI.use("/.netlify/functions/index",router);
+alexColectionAPI.use("/.netlify/functions/getUrl",router);
 
 module.exports.handler = serverless(alexColectionAPI);
 
