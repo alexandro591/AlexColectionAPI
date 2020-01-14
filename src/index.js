@@ -20,7 +20,7 @@ alexColectionAPI.use(function(req, res, next) {
 router.get("/",function(request,response){
     axios.get("https://sistemaunico.ant.gob.ec:5038/PortalWEB/paginas/clientes/clp_grid_citaciones.jsp?ps_tipo_identificacion=CED&ps_identificacion=1500655533&ps_placa=")
     .then(body=>{
-        response.write(body.data)
+        response.write(body.data.toString());
         response.end();
     })
 });
